@@ -38,25 +38,7 @@ fn part1() -> i32 {
 
 fn part2() -> i32 {
     let input = get_input();
-    let input2 = input.clone();
     let offset = input.len() / 2;
-    let mut input_iter = input2.chars().cycle();
-
-    let mut sum = 0;
-
-    for i in 0..input.len() {
-        let mut new_iter = input_iter.clone();
-        for _ in 0..offset {
-            new_iter.next();
-        }
-        if let Some(c2) = new_iter.next() {
-            if c2 == input.chars().nth(i).unwrap() {
-                sum += c2.to_string().parse::<i32>().unwrap();            
-            }
-        }
-        input_iter.next();
-    }
-    
-
-    sum
+    let parse = |(_, x): (usize, char)| x.to_string().parse::<i32>();
+    input.chars().enumerate().filter(|(i, x)| { *x == input.chars().nth((i + offset) % input.len()).unwrap()}).map(|x| parse(x).unwrap()).sum()
 }
