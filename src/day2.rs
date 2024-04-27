@@ -27,5 +27,24 @@ fn part1() -> i32 {
 }
 
 fn part2() -> i32 {
-    1
+    let input = get_input();
+
+    let mut sum = 0;
+
+    for line in input.lines() {
+        for num1 in line.split_whitespace().map(|x| x.parse::<i32>().unwrap())  {
+            for num2 in line.split_whitespace().map(|x| x.parse::<i32>().unwrap())  {
+                if num1 == num2 {
+                    continue
+                } 
+                if num1 % num2 == 0 {
+                    sum += num1 / num2;
+                } else if num2 % num1 == 0 {
+                    sum += num2 / num1;
+                }
+            }
+        }
+    }
+    sum / 2
+   
 }
