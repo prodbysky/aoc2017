@@ -14,7 +14,16 @@ fn get_input() -> String {
 }
 
 fn part1() -> i32 {
-    1
+    let input = get_input();
+
+    let mut sum = 0;
+
+    for line in input.lines() {
+        let max = line.split_whitespace().map(|num| num.parse::<i32>().unwrap()).max().unwrap();
+        let min = line.split_whitespace().map(|num| num.parse::<i32>().unwrap()).min().unwrap();
+        sum += max - min;
+    }
+    sum
 }
 
 fn part2() -> i32 {
