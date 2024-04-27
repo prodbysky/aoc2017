@@ -7,7 +7,7 @@ fn main() {
 }
 
 fn get_input() -> String {
-    let path = if TESTING {"inputs/p1/example.in"} else {"inputs/p1/input.in"};
+    let path = if TESTING {"inputs/d1/example.in"} else {"inputs/d1/input.in"};
     std::fs::read_to_string(path)
             .unwrap()
             .trim()
